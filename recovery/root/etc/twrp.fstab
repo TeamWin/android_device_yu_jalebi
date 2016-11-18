@@ -1,1 +1,9 @@
-# Created from the stock recovery, needs to be fstab version 1.
+/boot       emmc        /dev/block/bootdevice/by-name/boot
+/cache      ext4     	/dev/block/mmcblk0p3
+/data       ext4        /dev/block/bootdevice/by-name/userdata
+/misc       emmc        /dev/block/bootdevice/by-name/misc
+/recovery   emmc        /dev/block/bootdevice/by-name/recovery
+/sdcard     vfat        /dev/block/mmcblk0p1        			/dev/block/mmcblk0
+/system     ext4        /dev/block/bootdevice/by-name/system
+/firmware   ext4        /dev/block/bootdevice/by-name/modem
+/persist    ext4        /dev/block/bootdevice/by-name/persist

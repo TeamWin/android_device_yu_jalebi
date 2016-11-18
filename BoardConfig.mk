@@ -1,69 +1,68 @@
 # Bootloader
-# Make it equal to ro.product.board from your build.prop
-TARGET_BOOTLOADER_BOARD_NAME :=
+TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 TARGET_NO_BOOTLOADER := true
 
 # Platform
-# BOARD_PLATFORM is usually the processor for MTK devices, and chipset for MSM ones.
-TARGET_BOARD_PLATFORM :=
-#TARGET_BOARD_PLATFORM_GPU :=
+TARGET_BOARD_PLATFORM := msm8916
 
 # Architecture
+FORCE_32_BIT := true
 
-# all this info can be grabbed right off the build.prop
-TARGET_ARCH :=
-TARGET_ARCH_VARIANT :=
-TARGET_CPU_ABI :=
+ifneq ($(FORCE_32_BIT),true)
+TARGET_BOARD_SUFFIX := _64
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT :=
+TARGET_CPU_VARIANT := cortex-a53
 
-# For arm64 and arm64 ONLY
-TARGET_2ND_ARCH :=
-TARGET_2ND_ARCH_VARIANT :=
-TARGET_2ND_CPU_ABI :=
-TARGET_2ND_CPU_ABI2 :=
-TARGET_2ND_CPU_VARIANT :=
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
+
+TARGET_USES_64_BIT_BINDER := true
+else
+TARGET_BOARD_SUFFIX := _32
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_VARIANT := cortex-a53
+endif
 
 # Kernel
 
-# You can get these by unpacking your stock recovery.img through osm0sis's AIK tool. Go on, have a Google ;)
-BOARD_KERNEL_CMDLINE :=
-BOARD_KERNEL_BASE :=
-BOARD_KERNEL_PAGESIZE :=
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
+BOARD_RAMDISK_OFFSET     := 0x02000000
 
-# If you want to use a kernel source, uncomment the next two lines
-# TARGET_KERNEL_CONFIG := codename_defconfig
-# TARGET_KERNEL_SOURCE := kernel/vendor/codename
-TARGET_PREBUILT_KERNEL := device/vendor/codename/kernel
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00000000 --ramdisk_offset 0x00000000 --dt device/vendor/codename/dt.img --tags_offset 0x00000000
-BOARD_KERNEL_SEPARATED_DT :=
-TARGET_PREBUILT_KERNEL := device/vendor/codename/kernel
+TARGET_KERNEL_CONFIG := cyanogenmod_jalebi_defconfig
+TARGET_KERNEL_SOURCE := kernel/cyanogen/msm8916
 
 # Partition info
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # This is usually not needed for standalone devices. If you are creating a unified tree for
 # multiple variants, you may want to read up about Vendor init.
-TARGET_PLATFORM_DEVICE_BASE :=
 # Sizes to be put in in bytes. cant stress this enough.
-BOARD_BOOTIMAGE_PARTITION_SIZE :=
-BOARD_RECOVERYIMAGE_PARTITION_SIZE :=
-BOARD_SYSTEMIMAGE_PARTITION_SIZE :=
-BOARD_USERDATAIMAGE_PARTITION_SIZE :=
-BOARD_FLASH_BLOCK_SIZE :=
+BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2039480320
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 4613734400
 
 # TWRP specific flags. Check out this thread for more info on them : http://tinyw.in/twrpflags
-
-# This may be needed if you're using CM and cloned twrp source to bootable/recovery-twrp. Ignore if you're on Omni like we recommend
-RECOVERY_VARIANT := twrp
-# Fixes slanty graphics if they're present
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-# External storage stuff. Adapt it for your device
-TW_EXTERNAL_STORAGE_PATH := 
-TW_EXTERNAL_STORAGE_MOUNT_POINT := 
-TW_DEFAULT_EXTERNAL_STORAGE := true
-# Path to sysfs that controls brightness
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
-# Maximum brightness
 TW_MAX_BRIGHTNESS := 255
-TW_THEME := 
+TW_THEME := portrait_hdpi
