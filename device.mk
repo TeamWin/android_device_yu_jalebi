@@ -1,5 +1,5 @@
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := device/vendor/codename/kernel
+	LOCAL_KERNEL := device/yu/jalebi/kernel
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
