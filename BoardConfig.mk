@@ -48,6 +48,7 @@ BOARD_RAMDISK_OFFSET     := 0x02000000
 
 # Partition info
 TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
 
 # This is usually not needed for standalone devices. If you are creating a unified tree for
 # multiple variants, you may want to read up about Vendor init.
