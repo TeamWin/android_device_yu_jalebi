@@ -10,3 +10,8 @@ PRODUCT_DEVICE := jalebi
 PRODUCT_BRAND := YU
 PRODUCT_MODEL := YU4711
 PRODUCT_MANUFACTURER := YU
+
+# Default Props
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.build.product=YUNIQUE \
+    ro.product.device=YUNIQUE
