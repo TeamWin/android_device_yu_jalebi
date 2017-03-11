@@ -1,6 +1,7 @@
 /boot         emmc        /dev/block/bootdevice/by-name/boot
-/cache        ext4        /dev/block/bootdevice/by-name/cache
-/data         ext4        /dev/block/bootdevice/by-name/userdata   wait,check,encryptable=footer,length=-16384
+/recovery     emmc        /dev/block/bootdevice/by-name/recovery
+/cache        f2fs        /dev/block/bootdevice/by-name/cache
+/data         f2fs        /dev/block/bootdevice/by-name/userdata   wait,check,encryptable=footer,length=-16384
 /external_sd  auto        /dev/block/mmcblk1p1 /dev/block/mmcblk1  flags=display="Micro SDcard";storage;wipeingui;removable
 /system       ext4        /dev/block/bootdevice/by-name/system
 /usb-otg      vfat        /dev/block/sda1       /dev/block/sda     flags=display="USB OTG";storage;wipeingui;removable
